@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
 import ContactList from './ContactsList/ContactsList';
-// import Box from './Box';
 
 class App extends Component {
   state = {
@@ -41,9 +40,8 @@ class App extends Component {
     );
   };
 
-  handleFilterChangeInState = e => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+  handleFilterChange = ({target:{value}}) => {
+    this.setState({ 'filter': value });
   };
 
   getFilterContacts = () => {
@@ -62,11 +60,9 @@ class App extends Component {
         <Form addContacts={this.addContacts} />
         <h2>Contacts</h2>
         <Filter
-          // filter={this.state.filter}
-          handleChange={this.handleChange}
-          filterStateData={this.filterStateData}
+          handleChange={this.handleFilterChange}
+          filterStateData={this.state.filter}
         />
-        {/* <Filter filter={this.state.filter} onChange to input/> */}
         <ContactList
           filterContacts={filterContacts}
           deleteContact={this.deleteContact}
